@@ -47,15 +47,21 @@ Before a tagged Phase 3 release, maintainers must run the local Supabase reset, 
 
 ## Phase 4 — Trust and responsible AI
 
-Status: **Next**
+Status: **Implemented — validation and security review pending before release**
 
-- Verification workflows
-- Community-led trust signals
-- Moderation queues and appeals
-- AI-assisted navigation with visible uncertainty
-- Safety evaluations and human-review boundaries
+- Verification requests with private evidence metadata and explicit review states
+- Explainable trust signals and bounded profile trust summaries
+- Human-led moderation appeals
+- AI-assistance audit records with model, prompt, confidence, risk, and review metadata
+- Deterministic AI safety classification and human-review boundaries
+- Safety evaluation, privacy, retention, and deployment guidance
+- Tests for low-, high-, and critical-risk AI assistance scenarios
+
+Before a tagged Phase 4 release, maintainers must validate all migrations against a clean local Supabase instance, test RLS using multiple roles, run the complete CI suite, and complete a privacy and abuse-case review.
 
 ## Phase 5 — Ecosystem and adoption
+
+Status: **Next**
 
 - Reusable packages and component library
 - Localization and African-language support
