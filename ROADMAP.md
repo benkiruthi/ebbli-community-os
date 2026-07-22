@@ -31,17 +31,23 @@ Status: **Completed**
 
 ## Phase 3 — Core community modules
 
-Status: **Next**
+Status: **Implemented — validation pending before release**
 
-- Communities and memberships user flows
-- Needs and opportunities
-- Evidence attachments and review states
-- Events
-- Comments and member interaction
-- Notifications
-- Reporting, moderation, and audit trails
+- Communities and memberships authorization helpers
+- Needs and opportunities with moderated review states
+- Evidence attachment metadata with private-by-default visibility
+- Events and attendance responses
+- Nested comments and member interaction
+- Private recipient notifications
+- Reporting and moderation workflows
+- Append-only moderation audit trail
+- TypeScript domain contracts and module documentation
+
+Before a tagged Phase 3 release, maintainers must run the local Supabase reset, authorization-policy tests, lint, type checking, unit tests, and production build.
 
 ## Phase 4 — Trust and responsible AI
+
+Status: **Next**
 
 - Verification workflows
 - Community-led trust signals
