@@ -17,18 +17,23 @@ Status: **Completed**
 
 ## Phase 2 — Technical foundation
 
-- Initialize the monorepo and package boundaries
-- Create a reference Next.js application
-- Add TypeScript, linting, formatting, testing, and CI
-- Define environment configuration
-- Create Supabase local-development workflow
-- Publish initial database migrations
-- Add authentication and profile modules
+Status: **Completed**
+
+- Initialize a pnpm and Turborepo monorepo
+- Create a mobile-first Next.js reference application
+- Add strict TypeScript, ESLint, Prettier, Vitest, and GitHub Actions CI
+- Define validated environment configuration
+- Add a reproducible Supabase local-development workflow
+- Publish initial profiles, communities, and memberships migration
+- Add authentication-triggered profile creation
 - Add secure Row Level Security examples
+- Document installation, validation, and security boundaries
 
 ## Phase 3 — Core community modules
 
-- Communities and memberships
+Status: **Next**
+
+- Communities and memberships user flows
 - Needs and opportunities
 - Evidence attachments and review states
 - Events
@@ -38,31 +43,16 @@ Status: **Completed**
 
 ## Phase 4 — Trust and responsible AI
 
-- Verification interfaces
-- Human-in-the-loop approval workflows
-- AI-assisted discovery and navigation
-- Safety evaluations and prompt boundaries
-- Transparent recommendation explanations
-- Privacy-aware AI data handling
+- Verification workflows
+- Community-led trust signals
+- Moderation queues and appeals
+- AI-assisted navigation with visible uncertainty
+- Safety evaluations and human-review boundaries
 
 ## Phase 5 — Ecosystem and adoption
 
-- Component library
-- SDK and API documentation
-- Example deployments
-- Localization framework
-- Swahili reference translation
-- Low-bandwidth performance targets
-- Contributor governance expansion
-- Stable v1.0 release criteria
-
-## Success measures
-
-The project should eventually be measured by:
-
-- successful independent deployments;
-- active external contributors;
-- security and accessibility quality;
-- mobile and low-bandwidth performance;
-- reusable modules adopted outside Ebbli;
-- communities that report stronger access to people, support, and opportunity.
+- Reusable packages and component library
+- Localization and African-language support
+- Low-bandwidth benchmarks
+- Reference deployments for nonprofits, schools, churches, and community groups
+- Stable releases and migration guides
