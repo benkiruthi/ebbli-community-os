@@ -1,0 +1,43 @@
+name: Feature request
+description: Propose an improvement or reusable module
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Community problem
+      description: What real user or organizational problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the workflow, module, or interface.
+    validations:
+      required: true
+  - type: textarea
+    id: users
+    attributes:
+      label: Who benefits?
+      description: Include the expected users and African or low-bandwidth context where relevant.
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and safeguards
+      description: Consider privacy, security, moderation, abuse, accessibility, and responsible AI.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: This proposal is reusable beyond one private Ebbli workflow.
+          required: true
+        - label: I searched existing issues and the roadmap.
+          required: true
