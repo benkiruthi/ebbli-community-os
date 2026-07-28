@@ -1,122 +1,164 @@
 # Ebbli Community OS
 
-**The open-source operating system for trusted, mobile-first digital communities.**
+**Reusable, trusted, mobile-first community infrastructure designed first for African
+contexts and adaptable globally.**
 
-Ebbli Community OS is a reusable foundation for building community platforms that help people find the right people, opportunities, support, learning, and pathways to progress.
+![Status: early alpha](https://img.shields.io/badge/status-early%20alpha-orange)
+![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue)
 
-It is designed first for African contexts, mobile devices, low-bandwidth environments, and organizations that need practical community infrastructure without building everything from scratch.
+> **Maturity notice:** This repository is an early-alpha, pre-release reference
+> implementation. Database and domain foundations for Phases 1–4 are implemented and have
+> been locally exercised; end-user workflows remain minimal, independent security review is
+> pending, and no production-readiness claim is made.
 
-## Vision
+## Why this exists
 
-Ebbli Community OS aims to become reusable infrastructure for:
+Community organizations repeatedly rebuild identity, membership, needs and opportunity
+boards, events, moderation, verification, evidence handling, and audit systems. Ebbli aims
+to turn those common concerns into reusable open-source infrastructure with explicit trust
+boundaries.
 
-- community networks;
-- needs and opportunity boards;
-- learning and mentoring communities;
-- churches, schools, alumni and family networks;
-- business and professional communities;
-- nonprofit and civic programs;
-- trusted member directories;
-- responsible AI-assisted community navigation.
+It is intended for nonprofits, schools, churches, alumni networks, civic groups, community
+ventures, and developers building for mobile-only users, intermittent connectivity,
+localization needs, and community-led trust.
 
-The commercial Ebbli platform may build on this foundation, while private production data, proprietary business logic, payments, and sensitive matching systems remain outside this repository.
+African operating constraints lead to broadly useful engineering choices: small core
+workflows, low-bandwidth interfaces, provider boundaries, human moderation, explainable
+verification, and data minimization.
 
-## Principles
+## What exists today
 
-1. **Community before technology** — technology should strengthen human relationships rather than replace them.
-2. **Mobile first** — core workflows must work well on affordable phones and unstable connections.
-3. **Trust by design** — verification, moderation, privacy, and clear accountability are core infrastructure.
-4. **Responsible AI** — AI should assist human judgment, expose uncertainty, and avoid high-impact autonomous decisions.
-5. **Reusable infrastructure** — modules should be useful beyond a single Ebbli product.
-6. **African context, global usefulness** — design for African realities while keeping the framework adaptable elsewhere.
+- A pnpm/Turborepo workspace with a Next.js 16 reference application.
+- A reusable TypeScript core package with trust and deterministic AI-safety contracts.
+- Supabase Auth/PostgreSQL migrations for profiles, communities, memberships, needs,
+  opportunities, evidence metadata, events, attendance, comments, notifications, reports,
+  moderation audit records, verification, trust summaries, appeals, and AI audit records.
+- Row Level Security policies and pgTAP tests for critical ownership and review boundaries.
+- CI for formatting, migration naming, lint, type checking, unit tests, production build,
+  clean database reset, database tests, database linting, dependency review, and CodeQL.
+- Public contribution, governance, security, release, pilot, and responsible-AI guidance.
 
-## Planned modules
+The schema/domain layer is substantially ahead of the UI. The web application currently
+demonstrates project positioning, not complete community workflows. See the
+[feature-status matrix](docs/FEATURE_STATUS.md).
 
-- Authentication and member profiles
-- Communities and membership
-- Needs and opportunities
-- Events
-- Learning and mentoring
-- Messaging and notifications
-- Moderation and reporting
-- Verification and evidence workflows
-- Responsible AI assistant interfaces
-- Supabase schema and Row Level Security examples
-- Mobile-first React components
-- Localization and low-bandwidth support
+## Not implemented or not yet proven
 
-## Project status
+- A complete authentication and community-management UI.
+- Evidence file uploads, private Storage policies, malware scanning, or retention automation.
+- Delivery providers for email, messaging, and notifications.
+- Production AI-provider integration.
+- Offline synchronization, localization bundles, or measured low-bandwidth targets.
+- A public reference deployment, independent security review, or verified outside adoption.
 
-This repository is currently in **Phase 1: open-source foundation**. The architecture and modules are being defined before production code is extracted or introduced.
+## Architecture
 
-Do not treat the repository as production-ready yet.
-
-## Proposed technology direction
-
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-- Supabase
-- PostgreSQL
-- OpenAI-compatible AI interfaces
-- Resend-compatible email interfaces
-
-The architecture should remain modular so contributors can replace providers where practical.
-
-## Repository structure
-
-```text
-docs/                     Project vision and technical decisions
-.github/                  Contribution and issue templates
-apps/                     Reference applications (planned)
-packages/                 Reusable modules (planned)
-examples/                 Example implementations (planned)
+```mermaid
+flowchart LR
+  U["Mobile or desktop browser"] --> W["Next.js reference application"]
+  W --> C["@ebbli/core domain and safety rules"]
+  W --> A["Supabase Auth"]
+  W --> D["PostgreSQL Data API"]
+  D --> R["Row Level Security"]
+  R --> P["Community, moderation, and verification data"]
+  P -. "private object reference" .-> S["Supabase Storage boundary (not implemented)"]
+  P --> L["Append-only moderation audit records"]
+  W -. "future provider adapter" .-> AI["AI assistance boundary"]
+  AI --> H["Mandatory human review for consequential outputs"]
+  H --> L
 ```
 
-## Getting started
+Provider integrations are intentionally bounded so deployments can replace Supabase,
+notification, storage, or AI providers where practical. Production Ebbli data, proprietary
+matching logic, payments, and private anti-abuse signals are outside this repository.
 
-The application workspace has not yet been initialized. For now:
+## Quick start
+
+Prerequisites: Node.js 20 LTS, Corepack with pnpm 10.13.1, Docker Desktop, and Git.
 
 ```bash
 git clone https://github.com/benkiruthi/ebbli-community-os.git
 cd ebbli-community-os
+corepack enable
+corepack prepare pnpm@10.13.1 --activate
+pnpm install --frozen-lockfile
+cp .env.example apps/web/.env.local
+pnpm db:start
+pnpm db:reset
+pnpm dev
 ```
 
-Read:
+Supabase prints the local API URL and anonymous key. Add only those public local values to
+`apps/web/.env.local`. Never expose a service-role key to browser code. Windows users should
+read [validation and troubleshooting](docs/VALIDATION.md).
 
-- [Vision](docs/VISION.md)
+## Validate
+
+```bash
+pnpm format:check
+pnpm migration:check
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build --force
+pnpm db:reset
+pnpm test:db
+```
+
+Passing these commands means the checked revision passed defined automated gates. It does
+not mean the project is production-ready or independently audited.
+
+## Security model
+
+Every application table in the exposed `public` schema enables RLS. Policies use ownership,
+membership, and moderator checks; workflow-integrity triggers protect immutable ownership
+and reviewer-controlled fields. Privileged database functions have explicit execution
+grants. Evidence is metadata-only until private Storage policies are implemented.
+
+Read [SECURITY.md](SECURITY.md) and the [threat model](docs/THREAT_MODEL.md). Do not report
+vulnerabilities in public issues.
+
+## Responsible AI
+
+AI may assist with navigation, drafting, translation, summarization, and categorization.
+It must not make final verification, moderation, eligibility, financial-support, or safety
+decisions. High- and critical-risk outputs require meaningful human review and auditable
+metadata. See [Responsible AI](docs/RESPONSIBLE_AI.md).
+
+## Mobile, bandwidth, localization, and accessibility
+
+These are design requirements, not completed claims. Contributions should work with
+keyboard and screen readers, avoid unnecessary media, preserve usable small-screen flows,
+support localization, and document performance impact. Benchmarks and independent reviews
+remain planned.
+
+## Project documentation
+
+- [Feature status](docs/FEATURE_STATUS.md)
 - [Architecture](docs/ARCHITECTURE.md)
-- [Responsible AI](docs/RESPONSIBLE_AI.md)
-- [Governance](docs/GOVERNANCE.md)
+- [Vision](docs/VISION.md)
+- [Validation](docs/VALIDATION.md)
+- [Threat model](docs/THREAT_MODEL.md)
 - [Roadmap](ROADMAP.md)
-- [Contributing](CONTRIBUTING.md)
+- [Reviewer guide](docs/REVIEWER_GUIDE.md)
+- [Adoption status](docs/ADOPTION.md)
+- [Governance](docs/GOVERNANCE.md)
+- [Release process](docs/RELEASE_PROCESS.md)
 
-## Contributing
+## Contributing and support
 
-Contributions are welcome from developers, designers, researchers, community builders, nonprofits, schools, churches, and civic organizations.
+Start with [CONTRIBUTING.md](CONTRIBUTING.md), follow the
+[Code of Conduct](CODE_OF_CONDUCT.md), and use an issue before substantial work.
+Best-effort support boundaries are documented in [SUPPORT.md](SUPPORT.md).
 
-Before contributing, read [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md).
+## Current limitations
 
-Strong early contribution areas include:
+The project has one primary maintainer, no stable release, no public reference deployment,
+no verified external users, and no independent security or accessibility review. Pilot
+evaluations should use synthetic data and follow [PILOT_GUIDE.md](docs/PILOT_GUIDE.md).
 
-- architecture feedback;
-- documentation;
-- accessibility;
-- low-bandwidth performance;
-- localization and African language support;
-- moderation and trust systems;
-- Supabase security patterns;
-- testing strategy.
+## License and maintainer
 
-## Security
-
-Do not publish vulnerabilities or sensitive information in public issues. Follow [SECURITY.md](SECURITY.md).
-
-## License
-
-Licensed under the [Apache License 2.0](LICENSE).
-
-## Maintainer
-
-Initiated and maintained by [Ben Kiruthi](https://github.com/benkiruthi), Nairobi, Kenya.
+Licensed under the [Apache License 2.0](LICENSE). Initiated and maintained by
+[Ben Kiruthi](https://github.com/benkiruthi), Nairobi, Kenya. Maintainer responsibilities
+and the pathway for trusted contributors are in [MAINTAINERS.md](docs/MAINTAINERS.md).

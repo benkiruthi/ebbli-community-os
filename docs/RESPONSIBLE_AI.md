@@ -51,6 +51,11 @@ AI features should define:
 - escalation paths;
 - logging and retention rules.
 
+Recorded audit metadata must avoid raw sensitive prompts/outputs unless a documented lawful
+basis, access policy, and retention schedule exist. Hashes and version identifiers support
+traceability without becoming a substitute for meaningful review. Critical-risk assistance
+must refuse automated publication and escalate to an appropriate human-led process.
+
 ## Prohibited patterns
 
 Contributions should not:

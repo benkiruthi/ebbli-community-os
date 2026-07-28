@@ -4,7 +4,16 @@
 
 The architecture should be modular, secure by default, mobile-first, testable, and usable by organizations with limited technical teams.
 
-## Proposed shape
+## Current shape
+
+```text
+apps/web/             Minimal Next.js reference application
+packages/core/        Trust contracts and deterministic AI-safety rules
+supabase/migrations/  Auth, community, moderation, verification, and AI audit schema
+supabase/tests/       pgTAP RLS and workflow-integrity tests
+```
+
+## Target shape
 
 ```text
 apps/
@@ -25,6 +34,23 @@ docs/                   Product and technical documentation
 ```
 
 This is a target structure, not yet an implemented API contract.
+
+```mermaid
+flowchart LR
+  B["Browser"] --> W["Next.js"]
+  W --> C["@ebbli/core"]
+  W --> A["Supabase Auth"]
+  W --> P["PostgreSQL"]
+  P --> R["RLS and integrity triggers"]
+  R --> M["Community and moderation modules"]
+  R --> V["Verification and appeals"]
+  M --> L["Audit log"]
+  V --> H["Human reviewer"]
+  W -. "future" .-> S["Private Storage"]
+  W -. "future provider boundary" .-> AI["AI assistance"]
+  AI --> H
+  H --> L
+```
 
 ## Core boundaries
 
@@ -60,3 +86,8 @@ AI modules should suggest, summarize, classify, or guide within defined boundari
 ## Decision records
 
 Significant architectural decisions should eventually be captured as Architecture Decision Records in `docs/adr/`.
+
+Provider boundaries reduce lock-in: application code should depend on domain interfaces
+rather than provider-specific identifiers where practical. The commercial Ebbli product,
+production data, payments, proprietary matching/anti-abuse logic, and private analytics
+remain intentionally outside this repository.

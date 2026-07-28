@@ -2,6 +2,10 @@
 
 Ebbli Community OS is currently maintainer-led while its contributor community and technical foundation are established.
 
+The sole primary maintainer and current responsibilities are recorded in
+`docs/MAINTAINERS.md`. Decisions should be traceable through issues, pull requests, release
+notes, or architecture records; private security matters are the exception.
+
 ## Current model
 
 The maintainer is responsible for:
@@ -31,6 +35,9 @@ Maintainers may decline contributions that conflict with the mission, introduce 
 ## Path to expanded governance
 
 As the project develops, trusted contributors may become reviewers or maintainers based on sustained, constructive participation and demonstrated responsibility.
+
+Role changes are based on demonstrated work and judgment, not employment, affiliation,
+popularity, or claimed adoption. Scope and access should be granted incrementally.
 
 Future governance may include:
 
