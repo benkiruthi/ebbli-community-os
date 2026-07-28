@@ -1,9 +1,5 @@
 export type ReviewStatus =
-  | "draft"
-  | "pending_review"
-  | "approved"
-  | "rejected"
-  | "closed";
+  "draft" | "pending_review" | "approved" | "rejected" | "closed";
 
 export type CommunityPostKind = "need" | "opportunity";
 

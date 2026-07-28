@@ -31,7 +31,7 @@ Status: **Completed**
 
 ## Phase 3 — Core community modules
 
-Status: **Implemented — validation pending before release**
+Status: **Implemented in schema/domain layer — automated validation added; release pending**
 
 - Communities and memberships authorization helpers
 - Needs and opportunities with moderated review states
@@ -47,7 +47,7 @@ Before a tagged Phase 3 release, maintainers must run the local Supabase reset, 
 
 ## Phase 4 — Trust and responsible AI
 
-Status: **Implemented — validation and security review pending before release**
+Status: **Implemented in schema/domain layer — automated validation added; independent security review pending**
 
 - Verification requests with private evidence metadata and explicit review states
 - Explainable trust signals and bounded profile trust summaries

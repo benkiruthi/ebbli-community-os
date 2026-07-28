@@ -44,3 +44,12 @@ Ebbli Community OS is not intended to be:
 ## Long-term outcome
 
 A small organization should be able to deploy a safe, accessible, mobile-first community platform using documented modules, secure defaults, and adaptable workflows.
+
+The reusable scope is authentication/profile boundaries, membership, needs/opportunities,
+events, moderation, verification, appeals, evidence metadata, audit records, and bounded AI
+assistance. Production Ebbli data, proprietary commercial matching, payments, and private
+anti-abuse signals remain outside the repository.
+
+Designing for intermittent connectivity, affordable/shared devices, costly data,
+localization, and community-led trust produces patterns that are also useful to constrained
+organizations globally. This is an ecosystem rationale, not a claim of current adoption.

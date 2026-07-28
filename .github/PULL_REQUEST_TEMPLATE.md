@@ -20,6 +20,16 @@ Closes #
 
 Explain how the change was tested.
 
+## Impact review
+
+- Migrations involved:
+- RLS policies involved:
+- Privacy implications:
+- Security implications:
+- Moderation implications:
+- AI-safety implications:
+- Mobile, low-bandwidth, and accessibility implications:
+
 ## Screenshots
 
 Add screenshots or recordings for interface changes.
@@ -34,3 +44,6 @@ Add screenshots or recordings for interface changes.
 - [ ] I considered moderation and abuse risks.
 - [ ] AI-related changes follow `docs/RESPONSIBLE_AI.md`.
 - [ ] Tests or verification steps are included where appropriate.
+- [ ] Migrations use a unique timestamp and pass `pnpm migration:check`.
+- [ ] RLS changes include positive and negative database tests.
+- [ ] Documentation and the feature-status matrix are updated.
