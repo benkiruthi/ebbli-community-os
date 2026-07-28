@@ -20,9 +20,9 @@ Database migrations are forward-only. Rollback may require a corrective migratio
 database restore; release notes must say which. Never publish a release automatically
 without maintainer authorization.
 
-## Draft `v0.2.0-alpha.1`
+## `v0.2.0-alpha.1`
 
 Includes the workspace foundation, schema/domain modules through trust and responsible AI,
 RLS hardening, automated database tests, and maintainer documentation. It excludes a
 complete UI, secure object-storage workflow, public deployment, and production certification.
-Publication remains pending final validation and maintainer approval.
+The release is intended for evaluation, independent installation testing, and early pilots.
