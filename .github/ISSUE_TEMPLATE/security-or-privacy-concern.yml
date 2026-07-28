@@ -1,0 +1,18 @@
+name: Security or privacy concern
+description: Get private-reporting guidance; do not disclose vulnerabilities here
+title: "[Security guidance]: "
+labels:
+  - security
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include vulnerability details, secrets, personal data, or reproduction steps in this public form.
+        Use the private reporting route documented in SECURITY.md.
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Privacy check
+      options:
+        - label: I will not submit sensitive details in this public issue.
+          required: true
