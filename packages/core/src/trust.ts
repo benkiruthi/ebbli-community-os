@@ -1,12 +1,12 @@
-export type VerificationKind = 'person' | 'organization' | 'community_leader';
+export type VerificationKind = "person" | "organization" | "community_leader";
 export type VerificationStatus =
-  | 'draft'
-  | 'submitted'
-  | 'under_review'
-  | 'approved'
-  | 'rejected'
-  | 'expired'
-  | 'revoked';
+  | "draft"
+  | "submitted"
+  | "under_review"
+  | "approved"
+  | "rejected"
+  | "expired"
+  | "revoked";
 
 export interface VerificationRequest {
   id: string;
@@ -28,11 +28,7 @@ export interface TrustSummary {
 }
 
 export type AppealStatus =
-  | 'submitted'
-  | 'under_review'
-  | 'upheld'
-  | 'overturned'
-  | 'withdrawn';
+  "submitted" | "under_review" | "upheld" | "overturned" | "withdrawn";
 
 export interface ModerationAppeal {
   id: string;
@@ -44,14 +40,19 @@ export interface ModerationAppeal {
   decisionReason: string | null;
 }
 
-export function trustLabel(score: number): 'limited' | 'developing' | 'established' {
-  if (score >= 150) return 'established';
-  if (score >= 30) return 'developing';
-  return 'limited';
+export function trustLabel(
+  score: number,
+): "limited" | "developing" | "established" {
+  if (score >= 150) return "established";
+  if (score >= 30) return "developing";
+  return "limited";
 }
 
-export function canShowVerifiedBadge(status: VerificationStatus, expiresAt: string | null): boolean {
-  if (status !== 'approved') return false;
+export function canShowVerifiedBadge(
+  status: VerificationStatus,
+  expiresAt: string | null,
+): boolean {
+  if (status !== "approved") return false;
   if (!expiresAt) return true;
   return new Date(expiresAt).getTime() > Date.now();
 }

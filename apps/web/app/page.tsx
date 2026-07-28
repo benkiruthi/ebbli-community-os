@@ -9,7 +9,9 @@ export default function HomePage() {
   return (
     <main>
       <section className="hero">
-        <span className="eyebrow">Phase 2 technical foundation</span>
+        <span className="eyebrow">
+          Early alpha · schema-first reference implementation
+        </span>
         <h1>Build trusted digital communities with an open foundation.</h1>
         <p>
           Ebbli Community OS is a mobile-first Next.js and Supabase reference
@@ -17,8 +19,13 @@ export default function HomePage() {
           opportunities, support, and pathways to progress.
         </p>
         <div className="actions">
-          <a href="https://github.com/benkiruthi/ebbli-community-os">View repository</a>
-          <a className="secondary" href="https://github.com/benkiruthi/ebbli-community-os/blob/main/CONTRIBUTING.md">
+          <a href="https://github.com/benkiruthi/ebbli-community-os">
+            View repository
+          </a>
+          <a
+            className="secondary"
+            href="https://github.com/benkiruthi/ebbli-community-os/blob/main/CONTRIBUTING.md"
+          >
             Contribute
           </a>
         </div>
@@ -30,7 +37,10 @@ export default function HomePage() {
           {modules.map((module) => (
             <article key={module}>
               <h3>{module}</h3>
-              <p>Designed as reusable infrastructure with secure defaults and clear extension points.</p>
+              <p>
+                Designed as reusable infrastructure with secure defaults and
+                clear extension points.
+              </p>
             </article>
           ))}
         </div>

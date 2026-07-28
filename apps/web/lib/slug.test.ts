@@ -3,7 +3,9 @@ import { toSlug } from "./slug";
 
 describe("toSlug", () => {
   it("creates URL-safe community slugs", () => {
-    expect(toSlug("Nairobi Creators & Builders")).toBe("nairobi-creators-builders");
+    expect(toSlug("Nairobi Creators & Builders")).toBe(
+      "nairobi-creators-builders",
+    );
   });
 
   it("trims repeated separators", () => {

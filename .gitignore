@@ -136,3 +136,6 @@ dist
 .pnp.*
 supabase/.branches/
 .turbo/
+.pnpm-store/
+test-results/
+playwright-report/
