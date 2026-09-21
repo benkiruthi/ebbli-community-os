@@ -33,9 +33,9 @@
     "db:reset": "supabase db reset"
   },
   "devDependencies": {
-    "prettier": "^3.6.2",
-    "supabase": "^2.110.0",
-    "turbo": "^2.10.7",
-    "typescript": "^5.8.3"
+    "prettier": "^3.9.8",
+    "supabase": "^2.117.0",
+    "turbo": "^2.11.1",
+    "typescript": "^7.0.2"
   }
 }
